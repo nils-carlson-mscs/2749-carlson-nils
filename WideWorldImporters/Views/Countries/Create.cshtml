@@ -1,0 +1,76 @@
+﻿@model WideWorldImporters.Models.Countries
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Countries</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Region</label>
+                @*Select element name must match model: "Region"*@
+                <select name="Region" onchange="this.form.submit();" class="form-control"
+                        asp-items="@(@ViewBag.RegionSelectList)"></select>
+                <input type="hidden" name="previousRegion" value="@ViewBag.PreviousRegion" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Subregion</label>
+                @*Select element name must match model: "Subregion"*@
+                <select name="Subregion" class="form-control"
+                        asp-items="@(@ViewBag.SubregionSelectList)"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label>
+                <input asp-for="CountryName" class="form-control" />
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormalName" class="control-label"></label>
+                <input asp-for="FormalName" class="form-control" />
+                <span asp-validation-for="FormalName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsoAlpha3Code" class="control-label"></label>
+                <input asp-for="IsoAlpha3Code" class="form-control" />
+                <span asp-validation-for="IsoAlpha3Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsoNumericCode" class="control-label"></label>
+                <input asp-for="IsoNumericCode" class="form-control" />
+                <span asp-validation-for="IsoNumericCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryType" class="control-label"></label>
+                <input asp-for="CountryType" class="form-control" />
+                <span asp-validation-for="CountryType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LatestRecordedPopulation" class="control-label"></label>
+                <input asp-for="LatestRecordedPopulation" class="form-control" />
+                <span asp-validation-for="LatestRecordedPopulation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Continent" class="control-label"></label>
+                <input asp-for="Continent" class="form-control" />
+                <span asp-validation-for="Continent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

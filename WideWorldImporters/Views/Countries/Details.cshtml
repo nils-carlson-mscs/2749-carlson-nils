@@ -1,0 +1,126 @@
+﻿@model WideWorldImporters.Models.Countries
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Countries</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FormalName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FormalName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsoAlpha3Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsoAlpha3Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsoNumericCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsoNumericCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LatestRecordedPopulation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LatestRecordedPopulation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Continent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Continent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subregion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subregion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastEditedBy)
+        </dd>
+        <dt>
+            States/Provinces
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>@*Add link*@
+                    <a asp-controller="StateProvinces" asp-action="Create" asp-route-id="@Model.CountryId">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;New
+                    </a></th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Sales Territory</th>
+                    <th class="text-right" style="padding-right: 1em;">Population</th>
+                </tr>
+                @foreach (var item in Model.StateProvinces)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="StateProvinces" asp-action="Edit" asp-route-id="@item.StateProvinceId"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                            <a asp-controller="StateProvinces" asp-action="Delete" asp-route-id="@item.StateProvinceId"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                        <td>
+                            <a asp-controller="StateProvinces" asp-action="Details" asp-route-id="@item.StateProvinceId">
+                                @Html.DisplayFor(modelItem => item.StateProvinceCode)
+                            </a>
+                                </td>
+                        <td>
+                            <a asp-controller="StateProvinces" asp-action="Details" asp-route-id="@item.StateProvinceId">
+                                @Html.DisplayFor(modelItem => item.StateProvinceName)
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-controller="Customers" asp-action="Index" asp-route-id="@item.StateProvinceId">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalesTerritory)
+                        </td>
+                        <td class="text-right" style="padding-right: 1em;">
+                            @Html.DisplayFor(modelItem => item.LatestRecordedPopulation)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CountryId">
+        <span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</a> |
+    <a asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to List</a>
+</div>

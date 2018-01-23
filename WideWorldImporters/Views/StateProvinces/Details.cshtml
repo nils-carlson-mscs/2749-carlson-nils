@@ -1,0 +1,114 @@
+﻿@model WideWorldImporters.Models.StateProvinces
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StateProvinces</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StateProvinceCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateProvinceCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateProvinceName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateProvinceName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesTerritory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesTerritory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LatestRecordedPopulation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LatestRecordedPopulation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastEditedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Country.Continent)
+        </dd>
+        <dt>
+            Cities
+        </dt>
+        <dd>
+            <form asp-action="Details" method="get" class="form-inline">
+                <div class="form-actions no-color">
+                    <div class="form-group" style="margin-bottom: 6px">
+                        <label for="SearchString">Find city:&nbsp;</label>
+                        <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" />
+                        <input type="submit" value="Search" class="btn btn-default" />&nbsp;&nbsp;
+                        <a asp-route-id="@Model.StateProvinceId">Back to Full List</a>
+                    </div>
+                </div>
+            </form>
+            <table class="table">
+                <tr>
+                    <th>
+                        <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City</a>
+                    </th>
+                    <th class="text-right" style="padding-right: 1em;">
+                        <a asp-route-sortOrder="@ViewData["PopulationSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                            Population
+                        </a>
+                    </th>
+                </tr>
+                @{
+                    PaginatedList<Cities> pagedCities = ViewData["Cities"] as PaginatedList<Cities>;
+                    foreach (var item in pagedCities)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CityName)
+                        </td>
+                        <td class="text-right" style="padding-right: 1em;">
+                            @Html.DisplayFor(modelItem => item.LatestRecordedPopulation)
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    @{
+        var prevDisabled = !pagedCities.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !pagedCities.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(pagedCities.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </a>
+    <a asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(pagedCities.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        <i class="glyphicon glyphicon-arrow-right"></i>
+    </a>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StateProvinceId"><span class="glyphicon glyphicon-pencil"></span>Edit</a> |
+    <a asp-controller="Countries" asp-action="Details" asp-route-id="@Model.CountryId"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to List</a>
+</div>

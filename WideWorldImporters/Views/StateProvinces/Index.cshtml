@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WideWorldImporters.Models.StateProvinces>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StateProvinceCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StateProvinceName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesTerritory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LatestRecordedPopulation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastEditedBy)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateProvinceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateProvinceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesTerritory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatestRecordedPopulation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEditedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.Continent)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StateProvinceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StateProvinceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StateProvinceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

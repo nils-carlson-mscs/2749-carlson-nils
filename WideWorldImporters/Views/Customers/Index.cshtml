@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WideWorldImporters.Models.Customers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th><a asp-action="Create"><i class="glyphicon glyphicon-plus"></i> New</a></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditLimit)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.CustomerId"><i class="glyphicon glyphicon-pencil"></i></a>&nbsp;
+            <a asp-action="Delete" asp-route-id="@item.CustomerId"><i class="glyphicon glyphicon-remove"></i></a>
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.CustomerId">
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerCategory.CustomerCategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimaryContactPerson.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditLimit)
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryAddressLine1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryAddressLine2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCity.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCity.StateProvince.StateProvinceCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryPostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCity.StateProvince.Country.CountryName)
+        </td>
+        @*<td>
+            <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+        </td>*@
+    </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    @if (ViewData["CountryId"].ToString() != "")
+    {
+        <a asp-controller="Countries" asp-action="Details" asp-route-id='@ViewData["CountryId"]'>
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to List
+        </a>
+    }
+    else
+    {
+        <a asp-controller="Home">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back
+        </a>
+    }
+</div>

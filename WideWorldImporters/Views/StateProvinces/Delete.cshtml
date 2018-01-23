@@ -1,0 +1,58 @@
+﻿@model WideWorldImporters.Models.StateProvinces
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StateProvinces</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StateProvinceCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateProvinceCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateProvinceName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateProvinceName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesTerritory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesTerritory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LatestRecordedPopulation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LatestRecordedPopulation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastEditedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Country.Continent)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="StateProvinceId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @*<a asp-action="Index">Back to List</a>*@
+        <a asp-controller="Countries" asp-action="Details" asp-route-id="@Model.CountryId"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WideWorldImporters.Models.People>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<form asp-action="Index">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">Email Domain</label>
+                <select name="EmailDomain" onchange="this.form.submit();" class="form-control"
+                        asp-items="@(@ViewBag.EmailDomainSelectList)"></select>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th><a asp-action="Create"><i class="glyphicon glyphicon-plus"></i> New</a></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMailAddress)
+            </th>
+            <th>Customer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PersonId"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.PersonId"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PersonId">
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMailAddress)
+                </td>
+                <td>
+                    @{
+                        foreach (var cust in item.CustomersPrimaryContact)
+                        {
+                            @cust.CustomerName <br />
+                        }
+                        foreach (var cust in item.CustomersAlternateContact)
+                        {
+                            @cust.CustomerName <br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
