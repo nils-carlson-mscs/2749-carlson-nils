@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContosoUniversity", "Contos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters", "WideWorldImporters\WideWorldImporters.csproj", "{1472AF67-2335-4784-BC85-DB5975225165}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ncarlson2749ex1a1", "ncarlson2749ex1a1\ncarlson2749ex1a1.csproj", "{B754C418-1515-468B-B451-28275A8BB159}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1472AF67-2335-4784-BC85-DB5975225165}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1472AF67-2335-4784-BC85-DB5975225165}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1472AF67-2335-4784-BC85-DB5975225165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B754C418-1515-468B-B451-28275A8BB159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B754C418-1515-468B-B451-28275A8BB159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B754C418-1515-468B-B451-28275A8BB159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B754C418-1515-468B-B451-28275A8BB159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
